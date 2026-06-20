@@ -15,8 +15,9 @@
 			</p>
 			<div class="links-box box gap16">
 			<a class="text-lg" href="/docs/02-installation">Install</a>
-			<a class="text-lg" href="/docs">Docs</a>
-			<a class="text-lg" href="/docs/02-installation">Star on Github</a>
+			<a class="text-lg" href="/docs/01-introduction">Docs</a>
+			<a class="text-lg" href="https://github.com/fractalmandala/svelte-animated-icon">Star on Github</a>
+			<a class="text-lg" href="https://www.npmjs.com/package/svelte-animated-icon">NPM</a>
 			<a class="text-lg" href="/docs/05-license">License</a>
 			</div>
 		</article>

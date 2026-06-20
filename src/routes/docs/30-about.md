@@ -12,7 +12,8 @@ Svelte Animated Icon is a Svelte 5 animated icon library - tree-shakeable, multi
 - **Github:** This repo at [Github](https://github.com/fractalmandala/svelte-animated-icon).
 - **Built with:** SvelteKit 2, Svelte 5, the `@sveltejs/package` packaging tool, and `mdsvex` for these docs.
 - **Animation engine:** the browser's Web Animations API. No animation library dependency.
-- **Site:** [www.svelte-animated-icon.vercel.app/](https://svelte-animated-icon.vercel.app/)
+- **Site:** [www.svelte-animated-icon.vercel.app/](https://svelte-animated-icon.vercel.app/).
+- **Getting Started:** [Start Here](/docs/01-introduction).
 
 ## How this site is structured
 
@@ -25,4 +26,4 @@ The package and the docs site share a single SvelteKit project:
 
 ## License
 
-The package's own source code is released under the license declared in `package.json`. The Phosphor icons are MIT; the Remix icons follow Remix Icon's terms. See [License](/docs/05-license) for the full breakdown.
+The package's own source code is released under the license declared in `package.json`. The icons are MIT. See [License](/docs/05-license.md)

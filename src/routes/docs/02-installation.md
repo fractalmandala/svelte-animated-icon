@@ -5,7 +5,8 @@ group: getting started
 description: "Install with npm/pnpm, the Svelte 5 peer dependency, and the subpath import paths."
 ---
 
-Install `svelte-animated-icon` with your package manager of choice. The library has **one peer dependency**: Svelte 5.
+Install [svelte-animated-icon](https://www.npmjs.com/package/svelte-animated-icon) with your package manager of choice. The library has **one peer dependency**: Svelte 5.
+
 
 ```bash
 npm install svelte-animated-icon

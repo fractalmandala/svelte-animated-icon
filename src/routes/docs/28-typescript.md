@@ -39,7 +39,7 @@ interface Props {
 }
 ```
 
-`Variant` is `keyof typeof VARIANTS` - the exact union of variant ids that the codegen saw in the source folder. For Phosphor: `'regular' | 'light' | 'fill'`. For Remix (once generated): `'line' | 'fill'`.
+`Variant` is `keyof typeof VARIANTS` - the exact union of variant ids that the codegen saw in the source folder. For Phosphor: `'regular' | 'light' | 'fill'`. For Remix: `'line' | 'fill'`.
 
 The `[key: string]: unknown` index signature lets you pass anything `AnimatedIcon` accepts without per-prop re-declaration. TypeScript checks the *known* props strictly; unknown ones are still forwarded at runtime.
 
@@ -128,5 +128,9 @@ Branded types are usually more friction than they're worth here - `string` is fi
 |---|---|
 | `svelte-animated-icon` | `AnimatedIconProps`, `IconTemplate` |
 | `svelte-animated-icon/phosphor` | Per-icon `Props` interfaces (auto-generated) |
+| `svelte-animated-icon/remix` | Per-icon `Props` interfaces (auto-generated) |
+| `svelte-animated-icon/flowbite` | Per-icon `Props` interfaces (auto-generated) |
+| `svelte-animated-icon/hero` | Per-icon `Props` interfaces (auto-generated) |
+| `svelte-animated-icon/ion` | Per-icon `Props` interfaces (auto-generated) |
 
 The package's `exports` map points each subpath at its own `.d.ts`. Your editor should resolve types without configuration - if it doesn't, make sure your `tsconfig.json` includes `"moduleResolution": "Bundler"` or `"NodeNext"`.

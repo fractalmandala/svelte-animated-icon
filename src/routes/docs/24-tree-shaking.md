@@ -9,7 +9,7 @@ description: "How named imports + the exports map keep bundles tiny."
 
 ## Per-icon tree shaking
 
-Every icon is its own `.svelte` file. There is no barrel that re-exports all 1,500 of them - each lives in `src/lib/phosphor/icons/Gear.svelte` (and similar), and each contains only the SVG markup for its variants.
+Every icon is its own `.svelte` file. There is no barrel that re-exports all 4,000+ of them - each lives in `src/lib/phosphor/icons/Gear.svelte` (and similar), and each contains only the SVG markup for its variants.
 
 When you write:
 
@@ -27,20 +27,22 @@ This works because:
 
 ## Subpath exports
 
-Larger boundary. The package has two entry points today:
+Larger boundary. The package has six entry points today:
 
 ```json
 {
   "exports": {
     ".":          { "types": "./dist/index.d.ts",          "svelte": "./dist/index.js" },
-    "./phosphor": { "types": "./dist/phosphor/index.d.ts", "svelte": "./dist/phosphor/index.js" }
+    "./phosphor": { "types": "./dist/phosphor/index.d.ts", "svelte": "./dist/phosphor/index.js" },
+    "./remix":    { "types": "./dist/remix/index.d.ts",    "svelte": "./dist/remix/index.js" },
+    "./flowbite": { "types": "./dist/flowbite/index.d.ts", "svelte": "./dist/flowbite/index.js" },
+    "./hero":     { "types": "./dist/hero/index.d.ts",     "svelte": "./dist/hero/index.js" },
+    "./ion":      { "types": "./dist/ion/index.d.ts",      "svelte": "./dist/ion/index.js" }
   }
 }
 ```
 
-Importing from `svelte-animated-icon` brings in the core (engine + templates + types). Importing from `svelte-animated-icon/phosphor` brings in the core *plus* the Phosphor barrel. Crucially: **the `/remix` entry is never imported**, so Remix's components stay out of the bundle entirely.
-
-Once Remix icons are generated, a `./remix` entry is added to `exports` and the same boundary applies.
+Importing from `svelte-animated-icon` brings in the core (engine + templates + types). Importing from a subpath (e.g. `svelte-animated-icon/phosphor`) brings in the core *plus* that library's barrel. Crucially, other library entry points (like `/remix` or `/flowbite`) are never imported, so their components stay out of the bundle entirely.
 
 ```ts
 // ✗ Imports core + Phosphor barrel - Remix is excluded.

@@ -86,7 +86,9 @@ The shape of a template record - see `TEMPLATES` above.
 |---|---|
 | `svelte-animated-icon` | `AnimatedIcon`, `TEMPLATES`, `TEMPLATE_IDS`, `getTemplate`, `clearProps`, types |
 | `svelte-animated-icon/phosphor` | ~1,500 generated Phosphor icon components |
-
-After running the codegen, `svelte-animated-icon/remix` joins this list.
+| `svelte-animated-icon/remix` | 1,441 generated Remix icon components |
+| `svelte-animated-icon/flowbite` | 444 generated Flowbite icon components |
+| `svelte-animated-icon/hero` | 515 generated Hero icon components |
+| `svelte-animated-icon/ion` | 324 generated Ionicons icon components |
 
 See [Tree Shaking](/docs/24-tree-shaking) for how the bundler uses this map to keep your output small.

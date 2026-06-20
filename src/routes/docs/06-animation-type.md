@@ -5,7 +5,7 @@ group: customization
 description: "Choosing an animation template (draw, spin, jelly, …) and which suit line vs fill icons."
 ---
 
-The `template` prop selects which animation runs. Each template is a small WAAPI script that operates on whatever shapes the icon contains - `path`, `circle`, `line`, `polyline`, `polygon`, `ellipse`, `rect` - so a single template animates **any** of the ~1,500 icons uniformly.
+The `template` prop selects which animation runs. Each template is a small WAAPI script that operates on whatever shapes the icon contains - `path`, `circle`, `line`, `polyline`, `polygon`, `ellipse`, `rect` - so a single template animates **any** of the 4,000+ icons uniformly.
 
 ## Pick by feel
 

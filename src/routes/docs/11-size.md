@@ -17,11 +17,16 @@ The `size` prop sets the rendered pixel size of the icon. Default is `24`.
 
 `size` controls both `width` and `height` of the inner `<svg>`.
 
-## The fixed 256 viewBox
+## Icon viewBoxes
 
-Every icon ships with `viewBox="0 0 256 256"`, baked in by the codegen pipeline. That uniformity is what lets a single animation template move any icon correctly - the geometry is always on the same scale, regardless of the icon's source.
+Each icon library renders in its own native coordinate space, which is preserved by the codegen pipeline:
+- **Phosphor**: `viewBox="0 0 256 256"`
+- **Remix**: `viewBox="0 0 24 24"`
+- **Flowbite**: `viewBox="0 0 24 24"`
+- **Hero**: `viewBox="0 0 24 24"`
+- **Ion**: `viewBox="0 0 512 512"`
 
-You don't need to think about it. The `size` prop just sets the **render** size; the viewBox handles the math.
+You don't need to think about it. The `size` prop just sets the **render** size; the `viewBox` attribute on the SVG handles mapping the coordinate space correctly.
 
 ## Sizing via CSS
 

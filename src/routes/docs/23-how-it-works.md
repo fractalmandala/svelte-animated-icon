@@ -85,13 +85,13 @@ When `stopAnimation()` runs, the component calls each `Animation.cancel()` and t
 
 ## Why one template works on any icon
 
-Every icon has the same coordinate space - `viewBox="0 0 256 256"` - and templates operate on the shapes inside that space using simple geometric primitives (scale, rotate, opacity, stroke). No template ever needs to know about a specific icon.
+Most animation templates operate on shapes inside the SVG using relative geometric transformations (such as scale, rotate, opacity, and stroke). Since these transformations are coordinate-independent or utilize relative units (like setting `pathLength="1"` for stroke dash offsets), the same templates work seamlessly across different icon sets with different viewBox coordinate spaces (e.g., `256` for Phosphor, `24` for Remix/Flowbite/Hero, and `512` for Ion).
 
 This means:
 
 - New icons "just work" the moment they enter the library.
 - Adding a template benefits every existing icon.
-- The whole library is essentially `~1500 SVGs × ~22 templates`.
+- The whole library is essentially `~4,000+ SVGs × ~22 templates`.
 
 ## The component layer
 

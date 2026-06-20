@@ -5,6 +5,10 @@
 		"type": "git",
 		"url": "git+https://github.com/fractalmandala/svelte-animated-icon.git"
 	},
+	"homepage": "https://svelte-animated-icon.vercel.app",
+	"bugs": {
+		"url": "https://github.com/fractalmandala/svelte-animated-icon/issues"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",

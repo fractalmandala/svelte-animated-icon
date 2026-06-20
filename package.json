@@ -1,6 +1,6 @@
 {
 	"name": "svelte-animated-icon",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/fractalmandala/svelte-animated-icon.git"
@@ -58,6 +58,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
+		"@formkit/auto-animate": "^0.9.0",
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/package": "^2.5.8",
@@ -80,8 +81,5 @@
 	},
 	"keywords": [
 		"svelte"
-	],
-	"dependencies": {
-		"@formkit/auto-animate": "^0.9.0"
-	}
+	]
 }

@@ -1,6 +1,10 @@
 {
 	"name": "svelte-animated-icon",
 	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fractalmandala/svelte-animated-icon.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",

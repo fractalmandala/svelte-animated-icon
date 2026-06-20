@@ -10,6 +10,8 @@ Svelte Animated Icon is a Svelte 5 animated icon library - tree-shakeable, multi
 - **Site:** [www.svelte-animated-icon.vercel.app/](https://svelte-animated-icon.vercel.app/).
 - **Getting Started:** [Start Here](/docs/01-introduction).
 
+[![npm version](https://img.shields.io/npm/v/svelte-animated-icon.svg)](https://www.npmjs.com/package/svelte-animated-icon)
+
 ## How this site is structured
 
 The package and the docs site share a single SvelteKit project:

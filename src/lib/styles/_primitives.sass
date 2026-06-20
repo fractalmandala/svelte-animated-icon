@@ -1,0 +1,30 @@
+.box, .row
+	display: flex
+
+.box
+	flex-direction: column
+	&.xcenter
+		align-items: center
+	&.xleft
+		align-items: flex-start
+		text-align: left
+	&.ycenter
+		justify-content: center
+
+.row
+	flex-direction: row
+	&.ycenter
+		align-items: center
+	&.ytop
+		align-items: flex-start
+	&.xbetween
+		justify-content: space-between
+	&.xend
+		justify-content: flex-end
+
+.grid
+	display: grid
+	grid-auto-flow: row
+
+.animated-icon
+	color: var(--text10)

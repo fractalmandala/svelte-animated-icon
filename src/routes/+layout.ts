@@ -1,5 +1,5 @@
 import type { LayoutLoad } from './$types';
-import { allDocs } from '$lib/utils/localpulls';
+import { allDocs } from './utils/localpulls';
 
 export const load: LayoutLoad = async () => {
 	return {

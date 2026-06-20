@@ -1,4 +1,4 @@
-import { allDocsOrdered } from '$lib/utils/localpulls';
+import { allDocsOrdered } from '../../utils/localpulls';
 
 export async function load({ params }: { params: { post: string } }) {
 	const post = await import(`../${params.post}.md`);

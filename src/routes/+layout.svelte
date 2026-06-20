@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/styles/index.sass';
 	import type { LayoutProps } from './$types';
-	import { darkTheme, toggleTheme } from '$lib/utils/globalstores';
+	import { darkTheme, toggleTheme } from './utils/globalstores';
 	import Sun from '$lib/phosphor/icons/Sun.svelte'
 	import Moon from '$lib/phosphor/icons/Moon.svelte'
 	import Menu from '$lib/components/menu.svelte'

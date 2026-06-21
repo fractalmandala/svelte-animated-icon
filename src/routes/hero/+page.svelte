@@ -139,8 +139,8 @@
 				<div class="row gap8 ycenter xbetween">
 					<span class="text-xs col3 font20 w500">Import Statement</span>
 					<button class="icon-btn" onclick={copyImport}>
-						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
 						<span class="col-theme">{copiedImport ? 'Copied!' : ''}</span>
+						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
 					</button>
 				</div>
 				<pre class="language-svelte"><code class="language-svelte"
@@ -150,8 +150,8 @@
 				<div class="row gap8 ycenter xbetween" style="border-top: 1px solid var(--border20)">
 					<span class="text-xs col3 font20 w500">Component Usage</span>
 					<button class="icon-btn" onclick={copyUsage}>
-						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
 						<span class="col-theme">{copiedUsage ? 'Copied!' : ''}</span>
+						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
 					</button>
 				</div>
 				<pre class="language-svelte"><code class="language-svelte"
@@ -191,8 +191,8 @@
 		</div>
 		<div class="box gap4 colors-box">
 			<span class="text-sm col2 font20 w500">Color:</span>
-			<div class="row gap4">
-				{#each ['default', 'primary', 'secondary', 'tomato', 'green'] as c}
+			<div class="row gap4 wrap">
+				{#each ['primary', 'secondary', 'tomato', 'green'] as c}
 					<button
 						class="standard-btn small"
 						class:active={colorSelect === c}

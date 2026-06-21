@@ -24,7 +24,16 @@
 	let search = $state('');
 	let limit = $state(120);
 	let selected = $state<string | null>(null);
-	let copied = $state(false);
+	let colorSelect = $state('default');
+	const color = $derived(
+		colorSelect === 'default' ? null :
+		colorSelect === 'primary' ? 'var(--text10)' :
+		colorSelect === 'secondary' ? 'var(--text20)' :
+		colorSelect === 'green' ? 'var(--text100)' :
+		colorSelect
+	);
+	let copiedImport = $state(false);
+	let copiedUsage = $state(false);
 	let usageBar = $state<HTMLElement | undefined>();
 
 	const filtered = $derived(
@@ -69,25 +78,52 @@
 		return () => window.removeEventListener('keydown', onKeydown);
 	});
 
+	function importSnippet(icon: string): string {
+		return `<script lang="ts">\n\timport { ${icon} } from 'svelte-animated-icon/phosphor';\n</` + `script>`;
+	}
+
 	function usageSnippet(icon: string): string {
 		const v = variant === 'regular' ? '' : ` variant="${variant}"`;
 		const tr = trigger === 'mount' ? ' trigger="mount"' : '';
 		const sp = speed !== 1 ? ` speed={${speed}}` : '';
 		const ez = easing ? ` easing="${easing}"` : '';
 		const l = loop ? ' loop' : '';
-		return `<${icon} template="${template}"${v}${tr}${sp}${ez} size={${size}}${l} />`;
+		const c = color ? ` color="${color}"` : '';
+		return `<${icon} template="${template}"${v}${tr}${sp}${ez} size={${size}}${l}${c} />`;
+	}
+
+	async function copyImport(): Promise<void> {
+		if (!selected) return;
+		await navigator.clipboard.writeText(importSnippet(selected));
+		copiedImport = true;
+		setTimeout(() => (copiedImport = false), 1500);
 	}
 
 	async function copyUsage(): Promise<void> {
 		if (!selected) return;
 		await navigator.clipboard.writeText(usageSnippet(selected));
-		copied = true;
-		setTimeout(() => (copied = false), 1500);
+		copiedUsage = true;
+		setTimeout(() => (copiedUsage = false), 1500);
 	}
 </script>
 
 <svelte:head>
-	<title>Phosphor · svelte-animated-icon</title>
+	<title>Phosphor Icons · Svelte Animated Icon</title>
+	<meta name="description" content="Explore and customize Phosphor animated icons for Svelte 5. Select variants, adjust speed, easing, and copy production-ready code snippets." />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://svelte-animated-icon.vercel.app/phosphor" />
+	<meta property="og:title" content="Phosphor Icons · Svelte Animated Icon" />
+	<meta property="og:description" content="Explore and customize Phosphor animated icons for Svelte 5. Select variants, adjust speed, easing, and copy production-ready code snippets." />
+	<meta property="og:image" content="https://svelte-animated-icon.vercel.app/images/svelte-animated-icon.webp" />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://svelte-animated-icon.vercel.app/phosphor" />
+	<meta property="twitter:title" content="Phosphor Icons · Svelte Animated Icon" />
+	<meta property="twitter:description" content="Explore and customize Phosphor animated icons for Svelte 5. Select variants, adjust speed, easing, and copy production-ready code snippets." />
+	<meta property="twitter:image" content="https://svelte-animated-icon.vercel.app/images/svelte-animated-icon.webp" />
 </svelte:head>
 
 <div class="page-header">
@@ -100,13 +136,25 @@
 	<div class="controls box gap16">
 		<div class="usage-bar box" class:active={selected} bind:this={usageBar} use:autoAnimate>
 			{#if selected}
-			<div class="row gap8 ycenter xright">
-				<button class="icon-btn" onclick={copyUsage}>
-					<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
-					<span class="col-theme">{copied ? 'Copied!' : ''}</span>
-				</button>
-			</div>
-			<pre class="language-svelte"><code class="language-svelte"
+				<div class="row gap8 ycenter xbetween">
+					<span class="text-xs col3 font20 w500">Import Statement</span>
+					<button class="icon-btn" onclick={copyImport}>
+						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
+						<span class="col-theme">{copiedImport ? 'Copied!' : ''}</span>
+					</button>
+				</div>
+				<pre class="language-svelte"><code class="language-svelte"
+					>{importSnippet(selected)}</code
+				></pre>
+
+				<div class="row gap8 ycenter xbetween" style="border-top: 1px solid var(--border20)">
+					<span class="text-xs col3 font20 w500">Component Usage</span>
+					<button class="icon-btn" onclick={copyUsage}>
+						<FileCopy template="draw" speed={2.25} easing="cubic-bezier(0.32, 0, 0.67, 0)" size={20} />
+						<span class="col-theme">{copiedUsage ? 'Copied!' : ''}</span>
+					</button>
+				</div>
+				<pre class="language-svelte"><code class="language-svelte"
 					>{usageSnippet(selected)}</code
 				></pre>
 			{/if}
@@ -140,6 +188,20 @@
 					<option value={t.id}>{t.label}</option>
 				{/each}
 			</select>
+		</div>
+		<div class="box gap4 colors-box">
+			<span class="text-sm col2 font20 w500">Color:</span>
+			<div class="row gap4">
+				{#each ['default', 'primary', 'secondary', 'tomato', 'green'] as c}
+					<button
+						class="standard-btn small"
+						class:active={colorSelect === c}
+						onclick={() => (colorSelect = c)}
+					>
+						{c}
+					</button>
+				{/each}
+			</div>
 		</div>
 		<div class="border-box box gap16">
 		<div class="box sliders-box gap8">
@@ -186,7 +248,7 @@
 						selected = name;
 					}}
 				>
-					<Icon {variant} {template} {size} {trigger} {loop} {speed} {easing} />
+					<Icon {variant} {template} {size} {trigger} {loop} {speed} {easing} {color} />
 					<span class="text-xs col3">{name}</span>
 				</button>
 			{/each}

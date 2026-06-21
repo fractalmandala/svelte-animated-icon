@@ -7,23 +7,33 @@ description: "currentColor inheritance, the class prop, and styling the wrapper.
 
 Icons inherit color from their parent's `color` and accept extra CSS through the `class` prop.
 
-## `currentColor` inheritance
+## `currentColor` inheritance and `color` prop
 
-Every icon's strokes and fills use `currentColor`. That means a single `color` declaration on a parent - or the icon itself - is enough to recolor it.
+Every icon's strokes and fills use `currentColor`. That means the icon will naturally inherit the text color of its surrounding container.
+
+To set the color of the icon directly, you can pass a `color` prop or use inline `style`:
 
 ```svelte
-<button style="color: tomato;">
-  <Heart size={20} />
-  Like
-</button>
+<!-- Via color prop (supports variables, colors, and custom properties) -->
+<Heart color="tomato" />
+<Heart color="var(--brand-primary)" />
+<Heart color={isFavorite ? 'var(--text-primary)' : 'var(--text-secondary)'} />
 
+<!-- Via direct parent container -->
 <button style="color: var(--brand-primary);">
   <Gear size={20} />
   Settings
 </button>
+
+<!-- Via inline style -->
+<Heart style="color: red; margin: 4px;" />
 ```
 
 No `fill=` or `stroke=` props to remember; no per-icon override mechanism to manage.
+
+## Event and Attribute Forwarding
+
+All additional props, event handlers (`onclick`, `onmouseenter`, etc.), styles, and ARIA attributes passed to the icon components are automatically forwarded to the underlying wrapper `<div>` element.
 
 ## The `class` prop
 
@@ -40,7 +50,7 @@ Use it to:
 - Apply hover / focus / active states via parent selectors.
 - Target icons in tests.
 
-The wrapper itself is unstyled by default - `display`, `width`, `height`, etc. all flow from your CSS or the inline `size` prop.
+The wrapper itself is styled to inherit text color by default - `display`, `width`, `height`, etc. all flow from your CSS or the inline `size` prop.
 
 ## Targeting the inner `<svg>`
 

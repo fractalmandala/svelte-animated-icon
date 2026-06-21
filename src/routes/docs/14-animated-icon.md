@@ -28,6 +28,7 @@ The core animation engine. Importable as `AnimatedIcon` from `svelte-animated-ic
 | `speed` | `number` | `1` | | Duration / delay multiplier (`2` = twice as fast). |
 | `easing` | `string \| null` | `null` | | Override the template's easing. `null` keeps the template's own. |
 | `class` | `string` | `''` | | Extra class on the wrapper. |
+| `color` | `string` | - | | Text/icon color (sets inline `style="color: …"`). |
 
 ## Exported methods
 
@@ -59,10 +60,10 @@ Cancels all in-flight animations and calls `clearProps()` to strip the inline st
 
 ## Render output
 
-The component renders:
+The component renders (with any additional HTML attributes/styles/events forwarded):
 
 ```html
-<div class="animated-icon {className}" role="img" onmouseenter=… onmouseleave=…>
+<div class="animated-icon {className}" role="img" style="color: {color}; ...anyOtherStyles" onmouseenter=… onmouseleave=… ...anyOtherAttributes>
   <svg bind:this={svgEl} width={size} height={size} viewBox="0 0 256 256"
        style="overflow: visible; display: block;">
     {@html svg}
@@ -70,7 +71,7 @@ The component renders:
 </div>
 ```
 
-- The wrapper has `role="img"` by default. Override accessibility via `class` and CSS targeting if needed. See [Accessibility](/docs/27-accessibility).
+- The wrapper has `role="img"` by default. Override accessibility or add extra event handlers via standard props. See [Accessibility](/docs/27-accessibility).
 - The inner `<svg>` has a fixed `viewBox="0 0 256 256"` - required for templates to do their geometry tricks.
 - `xmlns="http://www.w3.org/2000/svg"` is set on the inner `<svg>`.
 

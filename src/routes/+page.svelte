@@ -1,3 +1,22 @@
+<svelte:head>
+	<title>Svelte Animated Icon - Svelte 5 Animated Icon Library</title>
+	<meta name="description" content="A Svelte 5 icon library where every icon ships with built-in animations. Over 10,000 animated icon variants powered by native Web Animations API." />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://svelte-animated-icon.vercel.app" />
+	<meta property="og:title" content="Svelte Animated Icon - Svelte 5 Animated Icon Library" />
+	<meta property="og:description" content="A Svelte 5 icon library where every icon ships with built-in animations. Over 10,000 animated icon variants powered by native Web Animations API." />
+	<meta property="og:image" content="https://svelte-animated-icon.vercel.app/images/svelte-animated-icon.webp" />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://svelte-animated-icon.vercel.app" />
+	<meta property="twitter:title" content="Svelte Animated Icon - Svelte 5 Animated Icon Library" />
+	<meta property="twitter:description" content="A Svelte 5 icon library where every icon ships with built-in animations. Over 10,000 animated icon variants powered by native Web Animations API." />
+	<meta property="twitter:image" content="https://svelte-animated-icon.vercel.app/images/svelte-animated-icon.webp" />
+</svelte:head>
+
 <section class="page-wrapper">
 	<div class="content-container box gap32">
 		<div class="doc-header box gap16">

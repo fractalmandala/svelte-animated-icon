@@ -1,5 +1,7 @@
 <script lang="ts" module>
-	export interface Props {
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	export interface Props extends HTMLAttributes<HTMLDivElement> {
 		/** Pre-stripped SVG inner content (no <svg> wrapper, no bounding rect) */
 		svg: string;
 		/** SVG coordinate space of `svg`. Phosphor is 256; Remix/Lucide are 24. */
@@ -22,13 +24,27 @@
 		/** Override the timing easing (any CSS easing string); null = keep the template's own. */
 		easing?: string | null;
 		class?: string;
+		color?: string;
 	}
 </script>
 
 <script lang="ts">
 	import { getTemplate, clearProps } from '$lib/core/templates.svelte';
 
-	let { svg, viewBox = '0 0 256 256', template = 'draw', size = 24, trigger = 'hover', active = false, loop = false, speed = 1, easing = null, class: className = ''}: Props = $props();
+	let {
+		svg,
+		viewBox = '0 0 256 256',
+		template = 'draw',
+		size = 24,
+		trigger = 'hover',
+		active = false,
+		loop = false,
+		speed = 1,
+		easing = null,
+		class: className = '',
+		color,
+		...rest
+	}: Props = $props();
 
 	let svgEl = $state<SVGSVGElement | null>(null);
 	let anims: Animation[] = [];
@@ -80,10 +96,18 @@
 </script>
 
 <div
+	{...rest}
 	class="animated-icon {className}"
 	role="img"
-	onmouseenter={() => trigger === 'hover' && startAnimation()}
-	onmouseleave={() => trigger === 'hover' && stopAnimation()}
+	onmouseenter={(e) => {
+		if (trigger === 'hover') startAnimation();
+		if (typeof rest.onmouseenter === 'function') rest.onmouseenter(e);
+	}}
+	onmouseleave={(e) => {
+		if (trigger === 'hover') stopAnimation();
+		if (typeof rest.onmouseleave === 'function') rest.onmouseleave(e);
+	}}
+	style:color={color}
 >
 	<svg
 		bind:this={svgEl}
@@ -96,3 +120,4 @@
 		{@html svg}
 	</svg>
 </div>
+
